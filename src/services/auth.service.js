@@ -20,6 +20,7 @@ class AuthService {
             "username",
             JSON.stringify(response.data.username)
           );
+
           localStorage.setItem("email", JSON.stringify(response.data.email));
 
           if (localStorage.getItem("user")) {

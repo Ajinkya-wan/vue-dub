@@ -81,6 +81,7 @@ export default {
       AuthService.login(this.params)
         .then((response) => {
           console.log(response, "Ajinkya");
+          this.$emit("changeTitle", "Awesome ");
         })
         .catch((e) => {
           console.log(e);

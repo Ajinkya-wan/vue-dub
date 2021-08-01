@@ -76,6 +76,7 @@ import router from "../src/Router";
 export default {
   data: () => ({
     drawer: null,
+    title: 1,
     user: {
       name: JSON.parse(localStorage.getItem("username")),
       email: JSON.parse(localStorage.getItem("email")),
@@ -96,6 +97,20 @@ export default {
       localStorage.clear();
       router.push("/login");
     },
+    updateUser() {
+      this.title++;
+      this.user.name = JSON.parse(localStorage.getItem("username"));
+      this.user.email = JSON.parse(localStorage.getItem("email"));
+    },
+  },
+  mounted() {
+    this.$on("customEventName", this.methodYouWannaCall);
+  },
+
+  updated() {
+    console.log(this.$route);
+
+    if (this.$route.name == "Dashboard" && this.title <= 1) this.updateUser();
   },
 };
 </script>
