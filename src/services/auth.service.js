@@ -1,24 +1,29 @@
-import axios from 'axios';
-import router from '../Router'
+import axios from "axios";
+import router from "../Router";
 
-const API_URL = 'http://localhost:8081/api/auth/';
+const API_URL = "http://13.232.221.164:8081/api/auth/";
 
 class AuthService {
   login(user) {
     return axios
-      .post(API_URL + 'signin', {
+      .post(API_URL + "signin", {
         username: user.username,
-        password: user.password
+        password: user.password,
       })
-      .then(response => {
+      .then((response) => {
         if (response.data) {
-            
-         localStorage.setItem('user', JSON.stringify(response.data.accessToken));
-         localStorage.setItem('username', JSON.stringify(response.data.username));
-         localStorage.setItem('email', JSON.stringify(response.data.email));
+          localStorage.setItem(
+            "user",
+            JSON.stringify(response.data.accessToken)
+          );
+          localStorage.setItem(
+            "username",
+            JSON.stringify(response.data.username)
+          );
+          localStorage.setItem("email", JSON.stringify(response.data.email));
 
-          if(localStorage.getItem('user')){
-            router.push('/dashboard'); 
+          if (localStorage.getItem("user")) {
+            router.push("/dashboard");
           }
         }
 
@@ -27,14 +32,14 @@ class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem("user");
   }
 
   register(user) {
-    return axios.post(API_URL + 'signup', {
+    return axios.post(API_URL + "signup", {
       username: user.username,
       email: user.email,
-      password: user.password
+      password: user.password,
     });
   }
 }
