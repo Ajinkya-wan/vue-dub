@@ -124,7 +124,7 @@ export default {
   }),
 
   methods: {
-    retrieveTutorials() {
+    retrieveUsers() {
       UserService.getAll()
         .then((response) => {
           this.desserts = response?.data;
@@ -151,33 +151,11 @@ export default {
     },
 
     refreshList() {
-      this.retrieveTutorials();
+      this.retrieveUsers();
     },
 
     reload() {
       this.chart_reload++;
-    },
-
-    removeAllTutorials() {
-      UserService.deleteAll()
-        .then((response) => {
-          console.log(response.data);
-          this.refreshList();
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
-
-    searchTitle() {
-      UserService.findByTitle(this.title)
-        .then((response) => {
-          this.tutorials = response.data.map(this.getDisplayTutorial);
-          console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
     },
 
     editEmployee(item) {
@@ -216,7 +194,7 @@ export default {
   mounted() {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
-      this.retrieveTutorials();
+      this.retrieveUsers();
     }
   },
 };
