@@ -1,4 +1,4 @@
-# ega-app
+# dub-app
 
 ## Project setup
 ```
